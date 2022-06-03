@@ -1,0 +1,7 @@
+Bill Details
+Bill name: ZamaaN
+pie:                      ... $6.33
+cake:                     ... $5.66
+chocolate:                ... $11.02
+Tip:                      ... $6
+Total:                    ... $29.01
