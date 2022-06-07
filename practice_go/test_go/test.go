@@ -1,50 +1,35 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strings"
+import(
+    "fmt"
+    "strings"
 )
 
-func checkSubStrings(jumbled_mess string, word_list []string, entry int) bool {
-	is_complete_match := false
-	match := 0
+func rotateRight(numbers []int, size int, k int) []int {
+    new_numbers := make([]int, size)
+    for index, value := range numbers {
+        new_numbers[(index + k) % size] = value
+    }
 
-	for _, word := range word_list {
-		if strings.Contains(jumbled_mess, word) {
-			match += 1
-		}
-	}
-
-	// fmt.Println(match)
-
-	if match == entry {
-		is_complete_match = true
-	}
-
-	return is_complete_match
+    return new_numbers
 }
 
 func main() {
-	reader := bufio.NewReader(os.Stdin)
-	var entry int
-	fmt.Scanln(&entry)
-	reader.ReadString('\n')
+    var test_case, size, k int
 
-	word_list := make([]string, entry)
-	for i := 0; i < entry; i++ {
-		fmt.Scanln(&word_list[i])
-	}
+    fmt.Scanf("%v", &test_case)
+	fmt.Scanln()
+    for i := 0; i < test_case; i++ {
+        fmt.Scanf("%v %v", &size, &k)
+		fmt.Scanln()
+        
+        numbers := make([]int, size)
+        for i := 0; i<size; i++ {
+            fmt.Scanf("%v", &numbers[i])
+        }
 
-	reader.ReadString('\n')
+        result := rotateRight(numbers, size, k)
 
-	var jumbled_mess string
-	fmt.Scanln(&jumbled_mess)
-
-	if checkSubStrings(jumbled_mess, word_list, entry) == true {
-		fmt.Println("Yes")
-	} else {
-		fmt.Println("No")
-	}
+        fmt.Println(strings.Trim(fmt.Sprint(result), "[]"))
+    }
 }
